@@ -6,29 +6,22 @@ import Navbar from "./Navbar";
 import Service from "./Service";
 import About from "./About";
 import Contact from "./Contact";
-import {Routes, Route, Navigate } from 'react-router-dom';
+import Footer from "./Footer";
+import {Switch, Route, Redirect } from 'react-router-dom';
 
 const App = () => {
-  const shouldRedirect = true;
+   
   return (
    <>
    <Navbar />
-   <Routes> 
-   <Route exact path='/' element={<Home />} />
-   <Route exact path='/about' element={<About />} />
-   <Route exact path='/service' element={<Service />} />
-   <Route exact path='/contact' element={<Contact />} />
-   <Route
-          path="*"
-          element={
-            shouldRedirect ? (
-              <Navigate replace to="/" />
-            ) : (
-              <About />
-            )
-          }
-        />
-  </Routes>
+   <Switch> 
+   <Route exact path='/' component={Home} />
+   <Route exact path='/about' component={About} />
+   <Route exact path='/service' component={Service} />
+   <Route exact path='/contact' component={Contact} />
+   <Redirect to='/'/>
+  </Switch>
+  <Footer />
    </>
   );
 }
